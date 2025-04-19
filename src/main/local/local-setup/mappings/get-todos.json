@@ -5,7 +5,7 @@
   },
   "response": {
     "status": 200,
-    "fixedDelayMilliseconds": 2000,
+    "fixedDelayMilliseconds": 1000,
     "jsonBody": [
       {
         "id": "d8b25784-c16f-449a-9006-6972e8a9111b",
