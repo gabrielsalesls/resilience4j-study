@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/v1/todos/fail"
+  },
+  "response": {
+    "status": 500,
+    "fixedDelayMilliseconds": 1000,
+    "body": "Internal Server Error",
+    "headers": {
+      "Content-Type": "text/plain"
+    }
+  }
+}

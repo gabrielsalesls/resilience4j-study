@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: example
+
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 2s
+
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 15s
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+    instances:
+      todoClient:
+        baseConfig: default
+
+logging:
+  level:
+    io.github.resilience4j: DEBUG
+    org.springframework.cloud.openfeign: DEBUG
