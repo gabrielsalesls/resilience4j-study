@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "GET",
-    "urlPathPattern": "/api/v1/todos"
+    "url": "/api/v1/todos"
   },
   "response": {
     "status": 200,

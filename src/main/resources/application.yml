@@ -7,24 +7,30 @@ spring:
       circuitbreaker:
         enabled: true
 
-resilience4j:
-  timelimiter:
-    configs:
-      default:
-        timeout-duration: 2s
+resilience4j.timelimiter:
+  configs:
+    default:
+      timeout-duration: 2s
 
-  circuitbreaker:
-    configs:
-      default:
-        sliding-window-size: 5
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 15s
-        minimum-number-of-calls: 5
-        permitted-number-of-calls-in-half-open-state: 3
-    instances:
-      todoClient:
-        baseConfig: default
-
+resilience4j.circuitbreaker:
+  configs:
+    forBackEndA:
+      sliding-window-size: 3
+      failure-rate-threshold: 50
+      wait-duration-in-open-state: 15s
+      minimum-number-of-calls: 5
+      permitted-number-of-calls-in-half-open-state: 3
+    forBackEndB:
+      sliding-window-size: 10
+      failure-rate-threshold: 50
+      wait-duration-in-open-state: 120s
+      minimum-number-of-calls: 10
+      permitted-number-of-calls-in-half-open-state: 3
+  instances:
+    backendA:
+      baseConfig: forBackEndA
+    backendB:
+      baseConfig: forBackEndB
 logging:
   level:
     io.github.resilience4j: DEBUG

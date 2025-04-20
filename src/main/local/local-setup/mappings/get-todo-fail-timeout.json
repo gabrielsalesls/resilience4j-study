@@ -4,8 +4,8 @@
     "url": "/api/v2/todos/fail/timeout"
   },
   "response": {
-    "status": 200,
-    "fixedDelayMilliseconds": 3000,
+    "status": 500,
+    "fixedDelayMilliseconds": 1000,
     "body": "Erro de timeout",
     "headers": {
       "Content-Type": "text/plain"

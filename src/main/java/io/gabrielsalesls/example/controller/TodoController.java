@@ -28,4 +28,10 @@ public class TodoController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping("/fail/timeout")
+    public ResponseEntity<String> getTodosTimeout() {
+        var data = service.getTodosTimeout();
+        return ResponseEntity.ok(data);
+    }
+
 }
