@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "98a24c06-e71c-472f-a613-65b1401738a3",
+		"name": "Resilience4J",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11297992"
+	},
+	"item": [
+		{
+			"name": "Get Todos - OK",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Todos - BackendA - Error",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/fail",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"fail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Todos - BackendB - Error",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/fail/timeout",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"fail",
+						"timeout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
