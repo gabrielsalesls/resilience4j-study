@@ -12,7 +12,28 @@ resilience4j.timelimiter:
     default:
       timeout-duration: 2s
 
+resilience4j.retry:
+  retry-aspect-order: 1
+  metrics:
+    legacy:
+      enabled: true
+    enabled: true
+  instances:
+    retryBackEndA:
+      maxAttempts: 5
+      waitDuration: 500ms
+      enableExponentialBackoff: true
+      exponentialBackoffMultiplier: 2
+      ignoreExceptions:
+        - io.github.resilience4j.circuitbreaker.CallNotPermittedException
+    retryBackEndB:
+      maxAttempts: 3
+      waitDuration: 1s
+      ignoreExceptions:
+        - io.github.resilience4j.circuitbreaker.CallNotPermittedException
+
 resilience4j.circuitbreaker:
+  circuitbreaker-aspect-order: 2
   configs:
     forBackEndA:
       sliding-window-size: 3
@@ -21,7 +42,7 @@ resilience4j.circuitbreaker:
       minimum-number-of-calls: 5
       permitted-number-of-calls-in-half-open-state: 3
     forBackEndB:
-      sliding-window-size: 10
+      sliding-window-size: 3
       failure-rate-threshold: 50
       wait-duration-in-open-state: 120s
       minimum-number-of-calls: 10
