@@ -13,7 +13,7 @@ resilience4j.timelimiter:
       timeout-duration: 2s
 
 resilience4j.retry:
-  retry-aspect-order: 1
+  retry-aspect-order: 2
   metrics:
     legacy:
       enabled: true
@@ -33,7 +33,7 @@ resilience4j.retry:
         - io.github.resilience4j.circuitbreaker.CallNotPermittedException
 
 resilience4j.circuitbreaker:
-  circuitbreaker-aspect-order: 2
+  circuitbreaker-aspect-order: 1
   configs:
     forBackEndA:
       sliding-window-size: 3
