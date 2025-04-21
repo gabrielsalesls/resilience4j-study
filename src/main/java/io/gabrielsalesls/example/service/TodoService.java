@@ -32,7 +32,7 @@ public class TodoService {
         return todoClient.getTodosToFail();
     }
 
-    @CircuitBreaker(name = "backendB")
+    @CircuitBreaker(name = "backendB", fallbackMethod = "backendBFallback")
     @Retry(name = "retryBackEndB")
     public String getTodosTimeout() {
         return todoClientB.getTimeout();
@@ -41,5 +41,10 @@ public class TodoService {
     private String backendAFallback(Exception e) {
         logger.info("BackEnd A Fallback");
         throw new ExternalServiceUnavailableException("/fail", "Fail to call external service.", 500);
+    }
+
+    private String backendBFallback(Exception e) {
+        logger.info("BackEnd B Fallback");
+        return "[]";
     }
 }
