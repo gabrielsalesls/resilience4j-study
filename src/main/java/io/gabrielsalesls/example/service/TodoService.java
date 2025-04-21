@@ -3,6 +3,7 @@ package io.gabrielsalesls.example.service;
 import io.gabrielsalesls.example.client.TodoClient;
 import io.gabrielsalesls.example.client.TodoClientB;
 import io.gabrielsalesls.example.exception.ExternalServiceUnavailableException;
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
@@ -43,8 +44,8 @@ public class TodoService {
         throw new ExternalServiceUnavailableException("/fail", "Fail to call external service.", 500);
     }
 
-    private String backendBFallback(Exception e) {
+    private String backendBFallback(CallNotPermittedException e) {
         logger.info("BackEnd B Fallback");
-        return "[]";
+        return todoClient.getTodos();
     }
 }
